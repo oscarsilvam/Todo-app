@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Nouvelle tâche{% endblock %}
+
+{% block content %}
+{% if errors %}
+<ul>
+    {% for error in errors %}
+    <li>{{error}}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<form id="form_dashboard" action="{{url_for('todo_new')}}" method="POST">
+    <label for="title">Titre de la tâche</label>
+    <input type="text" id="title" name="title">
+    <span class="error" id="err_title"></span>
+
+    <label for="description">Description</label>
+    <input type="text" id="description" name="description">
+
+    <label for="date">Date prévue</label>
+    <input type="date" id="date" name="date">
+
+    <label for="time">Heure</label>
+    <input type="time" id="time" name="time">
+
+    <label for="status">Status de la tâche</label>
+    <select id="status" name="status">
+        <option value="PENDING" selected>En attente</option>
+        <option value="DONE">Terminé</option>
+    </select>
+
+    <button type="submit">Ajouter à la liste de tâches</button>
+    <p id="add_todo"></p>
+
+</form>
+<a href="{{url_for('logout')}}">Se deconnecter</a>
+
+<script src="{{url_for('static', filename='js/script_dashboard.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Connexion{% endblock %}
+
+{% block content%}
+<p>Bienvenu {{username}} a ta page</p>
+
+{% if list_todo | length == 0 %}
+<p>Il n'y a aucune tâhce à réaliser</p>
+{% else %}
+{% for todo in list_todo %}
+<table>
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Date</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                
+                <h3>{{todo.title}}</h3>
+            </td>
+            <td>{{todo.due_date}}</td>
+            <td>
+                <a href="{{url_for('delete', id=todo.id)}}">Effacer</a><br>
+                <a href="{{url_for('update', id=todo.id)}}">Modifier</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+{% endfor %}
+{% endif %}
+
+<a href="{{url_for('add_new_todo')}}">Ajouter une nouvelle tâche</a>
+
+<a href="{{url_for('logout')}}">Se deconnecter</a>
+
+
+{% endblock %}
