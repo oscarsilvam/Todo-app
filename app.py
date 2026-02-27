@@ -168,7 +168,7 @@ def todo_new():
     return render_template('new_todo_success.html')
 
 #Delete a Todo
-@app.route("/delete/<int:id>")
+@app.route("/delete/<int:id>", methods=["POST"])
 def delete(id:int):
     if "user_id" not in session:
         return redirect(url_for('login'))
@@ -198,11 +198,13 @@ def update(id:int):
         abort(403)
 
     if request.method == "POST":
-        update_todo.title = request.form['title']
-        update_todo.description = request.form['description']
+        update_todo.title = request.form.get('title', '').strip()
+        update_todo.description = request.form.get('description', '').strip()
+
+        date = request.form.get('date')
+        time = request.form.get('time')
         
-        date = request.form['date']
-        time = request.form['time']
+        #Convert date and time in Objet datetime
         if date:
             update_todo.due_date = datetime.strptime(date, '%Y-%m-%d').date()
         else :
@@ -213,7 +215,7 @@ def update(id:int):
         else :
             update_todo.due_time = None
 
-        update_todo.status = request.form['status']
+        update_todo.status = request.form.get('status', '').strip()
 
         try :
             db.session.commit()
@@ -225,9 +227,6 @@ def update(id:int):
         return render_template ('update_todo.html', todo=update_todo)    
 
             
-
-    
-
 
 @app.route("/logout")
 def logout():

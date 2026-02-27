@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Connexion{% endblock %}
 
-{% block content%}
-<p>Bienvenu {{username}} a ta page</p>
+{% block content %}
+<p>Bienvenue {{ username }} à ta page</p>
 
 {% if list_todo | length == 0 %}
-<p>Il n'y a aucune tâhce à réaliser</p>
+<p>Il n'y a aucune tâche à réaliser</p>
 {% else %}
-{% for todo in list_todo %}
+
 <table>
     <thead>
         <tr>
@@ -17,26 +17,26 @@
         </tr>
     </thead>
     <tbody>
+        {% for todo in list_todo %}
         <tr>
+            <td>{{ todo.title }}</td>
+            <td>{{ todo.due_date or '' }}</td>
             <td>
-                
-                <h3>{{todo.title}}</h3>
-            </td>
-            <td>{{todo.due_date}}</td>
-            <td>
-                <a href="{{url_for('delete', id=todo.id)}}">Effacer</a><br>
-                <a href="{{url_for('update', id=todo.id)}}">Modifier</a>
+                <form action="{{ url_for('delete', id=todo.id) }}" method="post" style="display:inline">
+                    <button type="submit">Effacer</button>
+                </form>
+                <form action="{{ url_for('update', id=todo.id) }}" method="post" style="display:inline">
+                    <button type="submit">Modifier</button>
+                </form>
             </td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 
-{% endfor %}
 {% endif %}
 
-<a href="{{url_for('add_new_todo')}}">Ajouter une nouvelle tâche</a>
-
-<a href="{{url_for('logout')}}">Se deconnecter</a>
-
+<a href="{{ url_for('add_new_todo') }}">Ajouter une nouvelle tâche</a>
+<a href="{{ url_for('logout') }}">Se déconnecter</a>
 
 {% endblock %}
