@@ -3,10 +3,11 @@ from flask import url_for, abort
 from models_data import db, Todo, User
 import re
 from datetime import datetime
+import os
 
 
 app = Flask(__name__)
-app.secret_key = "some password"
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-secret-key")
 
 # configure the SQLite database
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
