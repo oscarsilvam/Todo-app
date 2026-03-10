@@ -4,13 +4,7 @@
 {% block content %}
 <p>Bienvenue {{ username }} à ta page</p>
 
-{% if errors %}
-<ul class="errors">
-    {% for err in errors %}
-    <li>{{ err }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+{% include "partials/_error_form.html" %}
 
 {% if list_todo | length == 0 %}
 <p>Il n'y a aucune tâche à réaliser</p>
