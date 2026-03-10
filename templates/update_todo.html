@@ -1,6 +1,39 @@
 {% extends "base.html" %}
-{% block title %}Connexion{% endblock %}
+{% block title %}Modification de tâche{% endblock %}
 
 {% block content%}
-<p>page en construction</p>
+{% include "partials/_error_form.html" %}
+
+<form id="form_todo" action="{{url_for('update', id=todo.id)}}" method="POST">
+    <label for="title">Titre de la tâche</label>
+    <input type="text" id="title" name="title" value="{{todo.title}}">
+    <span class="error" id="err_title"></span>
+
+    <label for="description">Description</label>
+    <input type="text" id="description" name="description" value="{{todo.description}}">
+
+    <label for="date">Date prévue</label>
+    <input type="date" id="date" name="date" value="{{todo.due_date.strftime('%Y-%m-%d') if todo.due_date else ''}}">
+
+    <label for="time">Heure</label>
+    <input type="time" id="time" name="time" value="{{todo.due_time.strftime('%H:%M') if todo.due_time else ''}}">
+
+    <label for="status">Status de la tâche</label>
+    <select id="status" name="status" >
+        <option value="PENDING"
+        {% if todo.status =="PENDING" %}selected{% endif %}>En attente</option>
+        <option value="DONE"
+        {% if todo.status == "DONE" %}selected{% endif %}>Terminé</option>
+    </select>
+
+    <button type="submit">Mettre à jour</button>
+
+
+</form>
+<a href="{{url_for('dashboard')}}">Annuler modification</a>
+
+<script src="{{url_for('static', filename='js/script_add_modif_todo.js')}}"></script>
+
+
+
 {% endblock %}

@@ -2,15 +2,9 @@
 {% block title %}Nouvelle tâche{% endblock %}
 
 {% block content %}
-{% if errors %}
-<ul>
-    {% for error in errors %}
-    <li>{{error}}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+{% include "partials/_error_form.html" %}
 
-<form id="form_dashboard" action="{{url_for('todo_new')}}" method="POST">
+<form id="form_todo" action="{{url_for('todo_new')}}" method="POST">
     <label for="title">Titre de la tâche</label>
     <input type="text" id="title" name="title">
     <span class="error" id="err_title"></span>
@@ -36,5 +30,5 @@
 </form>
 <a href="{{url_for('logout')}}">Se deconnecter</a>
 
-<script src="{{url_for('static', filename='js/script_dashboard.js')}}"></script>
+<script src="{{url_for('static', filename='js/script_add_modif_todo.js')}}"></script>
 {% endblock %}

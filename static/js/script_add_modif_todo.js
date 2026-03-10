@@ -19,7 +19,7 @@ function valTodo() {
     return true;
 }
 
-document.getElementById("form_dashboard").addEventListener("submit", function (event) {
+document.getElementById("form_todo").addEventListener("submit", function (event) {
 
     resetMsgError();
     const todoCheck = valTodo();

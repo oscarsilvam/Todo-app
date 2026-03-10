@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Détails de la tâche{% endblock %}
+
+{% block content %}
+    <h1>{{ todo.title }}</h1>
+    <p>{{ todo.description }}</p>
+    <p>Date: {{ todo.due_date }}</p>
+    <p>Heure: {{ todo.due_time }}</p>
+    <p>Status: {{ todo.status }}</p>
+    <a href="{{ url_for('dashboard') }}">Retour au tableau de bord</a>
+{% endblock %}

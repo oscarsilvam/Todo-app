@@ -135,7 +135,7 @@ def todo_new():
     description = data.get('description', '').strip()
     date = data.get('date', '').strip()
     time = data.get('time','')
-    status = data.get('status','').strip()
+    status = data.get('status','').strip() or 'PENDING'  # Default to 'PENDING' if empty
 
     errors = []
 
@@ -166,6 +166,20 @@ def todo_new():
     db.session.add(new_todo)
     db.session.commit()
     return render_template('new_todo_success.html')
+
+#Details of a Todo
+@app.route("/todo-details/<int:id>")
+def todo_details(id:int):
+    if "user_id" not in session:
+        return redirect(url_for('login'))
+    
+    todo = Todo.query.get_or_404(id)
+
+    if todo.id_user != session["user_id"]:
+        abort(403)
+
+    return render_template('todo_details.html', todo=todo)    
+
 
 #Delete a Todo
 @app.route("/delete/<int:id>", methods=["POST"])
@@ -215,7 +229,11 @@ def update(id:int):
         else :
             update_todo.due_time = None
 
-        update_todo.status = request.form.get('status', '').strip()
+        # Keep original status if empty, or update if a valid value is provided
+        status = request.form.get('status', '').strip()
+        if status and status in ('PENDING', 'DONE'):
+            update_todo.status = status
+        # else: keep the original status value
 
         try :
             db.session.commit()
@@ -224,7 +242,8 @@ def update(id:int):
             return f"Error {e}"
         
     else :
-        return render_template ('update_todo.html', todo=update_todo)    
+        # GET request: display the update form
+        return render_template('update_todo.html', todo=update_todo)    
 
             
 
