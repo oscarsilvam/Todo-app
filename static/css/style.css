@@ -1,0 +1,19 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.content {
+  max-width: 800px;
+  background-color: aqua;
+}
+.content table {
+  width: 100%;
+  border: wheat;
+  border-collapse: collapse;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+}/*# sourceMappingURL=style.css.map */

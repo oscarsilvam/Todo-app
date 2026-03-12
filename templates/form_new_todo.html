@@ -4,31 +4,44 @@
 {% block content %}
 {% include "partials/_error_form.html" %}
 
-<form id="form_todo" action="{{url_for('todo_new')}}" method="POST">
-    <label for="title">Titre de la tâche</label>
-    <input type="text" id="title" name="title">
-    <span class="error" id="err_title"></span>
+<div class="content p-4 mx-auto">
+    <h1 class="mb-4 text-center">Ajouter une nouvelle tâche</h1>
 
-    <label for="description">Description</label>
-    <input type="text" id="description" name="description">
+    <form id="form_todo" action="{{url_for('todo_new')}}" method="POST">
 
-    <label for="date">Date prévue</label>
-    <input type="date" id="date" name="date">
+        <div class="col-12 mb-2">
+            <label for="title">Titre de la tâche</label>
+            <input type="text" id="title" class="form-control" name="title">
+            <span class="error" id="err_title"></span>
+        </div>
 
-    <label for="time">Heure</label>
-    <input type="time" id="time" name="time">
+        <div class="col-12 mb-2">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="row g-3 mb-2">
+            <div class="col-6">
+                <label for="date">Date prévue</label>
+                <input type="date" id="date" class="form-control" name="date">
+            </div>
 
-    <label for="status">Status de la tâche</label>
-    <select id="status" name="status">
-        <option value="PENDING" selected>En attente</option>
-        <option value="DONE">Terminé</option>
-    </select>
+            <div class="col-6">
+                <label for="time">Heure</label>
+                <input type="time" id="time" class="form-control" name="time">
+            </div>
 
-    <button type="submit">Ajouter à la liste de tâches</button>
-    <p id="add_todo"></p>
+            <label for="status">Status de la tâche</label>
+            <select id="status" name="status">
+                <option value="PENDING" selected>En attente</option>
+                <option value="DONE">Terminé</option>
+            </select>
 
-</form>
-<a href="{{url_for('logout')}}">Se deconnecter</a>
+            <button type="submit">Ajouter à la liste de tâches</button>
+            <p id="add_todo"></p>
+
+    </form>
+    <a href="{{url_for('logout')}}">Se deconnecter</a>
+</div>
 
 <script src="{{url_for('static', filename='js/script_add_modif_todo.js')}}"></script>
 {% endblock %}

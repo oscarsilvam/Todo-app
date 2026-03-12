@@ -2,44 +2,53 @@
 {% block title %}Tableau de bord{% endblock %}
 
 {% block content %}
-<p>Bienvenue {{ username }} à ta page</p>
+<div class="content p-2 mx-auto">
+    <h2 class="mb-4 text-center">Liste de tâches</h2>
+    <h3>Bienvenu(e) {{ username }}!</h3>
 
-{% include "partials/_error_form.html" %}
+    {% include "partials/_error_form.html" %}
 
-{% if list_todo | length == 0 %}
-<p>Il n'y a aucune tâche à réaliser</p>
-{% else %}
+    {% if list_todo | length == 0 %}
+    <p>Il n'y a aucune tâche à réaliser</p>
+    {% else %}
 
-<table>
-    <thead>
-        <tr>
-            <th>Titre</th>
-            <th>Date</th>
-            <th>Options</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for todo in list_todo %}
-        <tr>
-            <td>{{ todo.title }}</td>
-            <td>{{ todo.due_date or '' }}</td>
-            <td>
-                <form action="{{ url_for('delete', id=todo.id) }}" method="post" style="display:inline">
-                    <button type="submit">Effacer</button>
-                </form>
-                <!-- use a GET link to open the edit form -->
-                <a href="{{ url_for('update', id=todo.id) }}">Modifier</a>
+    <div class="table-responsive-sm fs-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Date</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in list_todo %}
+                <tr>
+                    <td>{{ todo.title }}</td>
+                    <td>{{ todo.due_date or '' }}</td>
+                    <td>
+                        <a class="btn btn-outline-success d-flex justify-content-center"
+                            href="{{ url_for('todo_details', id=todo.id) }}">Détails</a>
+                        <div class="d-flex justify-content-center">
+                            <form action="{{ url_for('delete', id=todo.id) }}" method="post">
+                                <button class="btn btn-outline-danger" type="submit">Effacer</button>
+                            </form>
+                            <!-- use a GET link to open the edit form -->
+                            <a href="{{ url_for('update', id=todo.id) }}" class="btn btn-outline-primary">Modifier</a>
+                        </div>
 
-              <a href="{{ url_for('todo_details', id=todo.id) }}">Détails</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    <div class="d-flex justify-content-center">
 
-{% endif %}
-
-<a href="{{ url_for('add_new_todo') }}">Ajouter une nouvelle tâche</a>
-<a href="{{ url_for('logout') }}">Se déconnecter</a>
+        <a class="btn btn-outline-primary me-3" href="{{ url_for('add_new_todo') }}">Ajouter une nouvelle tâche</a>
+        <a class="btn btn-outline-success me-3" href="{{ url_for('logout') }}">Se déconnecter</a>
+    </div>
+</div>
 
 {% endblock %}
