@@ -4,33 +4,51 @@
 {% block content%}
 {% include "partials/_error_form.html" %}
 
-<form id="form_todo" action="{{url_for('update', id=todo.id)}}" method="POST">
-    <label for="title">Titre de la tâche</label>
-    <input type="text" id="title" name="title" value="{{todo.title}}">
-    <span class="error" id="err_title"></span>
+<div class="content p-4 mx-auto">
+    <h1 class="mb-4 text-center">Modifier la tâche</h1>
 
-    <label for="description">Description</label>
-    <input type="text" id="description" name="description" value="{{todo.description}}">
+    <form id="form_todo" action="{{url_for('update', id=todo.id)}}" method="POST">
 
-    <label for="date">Date prévue</label>
-    <input type="date" id="date" name="date" value="{{todo.due_date.strftime('%Y-%m-%d') if todo.due_date else ''}}">
+        <div class="col-12 mb-2">
+            <label for="title">Titre de la tâche</label>
+            <input type="text" id="title" class="form-control" name="title" value="{{todo.title}}">
+            <span class="error" id="err_title"></span>
+        </div>
 
-    <label for="time">Heure</label>
-    <input type="time" id="time" name="time" value="{{todo.due_time.strftime('%H:%M') if todo.due_time else ''}}">
+        <div class="col-12 mb-2">
+            <label for="description">Description</label>
+            <input type="text" id="description" class="form-control" name="description" value="{{todo.description}}">
+        </div>
 
-    <label for="status">Status de la tâche</label>
-    <select id="status" name="status" >
-        <option value="PENDING"
-        {% if todo.status =="PENDING" %}selected{% endif %}>En attente</option>
-        <option value="DONE"
-        {% if todo.status == "DONE" %}selected{% endif %}>Terminé</option>
-    </select>
+        <div class="row g-3 mb-2">
+            <div class="col-6">
+                <label for="date">Date prévue</label>
+                <input type="date" id="date" class="form-control" name="date"
+                    value="{{todo.due_date.strftime('%Y-%m-%d') if todo.due_date else ''}}">
+            </div>
 
-    <button type="submit">Mettre à jour</button>
+            <div class="col-6">
+                <label for="time">Heure</label>
+                <input type="time" id="time" class="form-control" name="time"
+                    value="{{todo.due_time.strftime('%H:%M') if todo.due_time else ''}}">
+            </div>
+        </div>
 
+        <div class="col-12 mb-2">
+            <label for="status">Status de la tâche</label>
+            <select id="status" class="form-select" name="status">
+                <option value="PENDING" {% if todo.status=="PENDING" %}selected{% endif %}>En attente</option>
+                <option value="DONE" {% if todo.status=="DONE" %}selected{% endif %}>Terminé</option>
+            </select>
+        </div>
 
-</form>
-<a href="{{url_for('dashboard')}}">Annuler modification</a>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-outline-primary">Mettre à jour</button>
+        </div>
+
+    </form>
+    {% include "partials/_annuler_logout.html" %}
+</div>
 
 <script src="{{url_for('static', filename='js/script_add_modif_todo.js')}}"></script>
 

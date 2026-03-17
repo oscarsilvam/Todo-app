@@ -1,21 +1,51 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    
+    color: #4f46e5;
+
 }
 
 
 
 .content {
-    //margin-top: 20px;
-    max-width: 800px;
-    background-color: aqua;
 
-    table {
-    width: 100%;
-    border: wheat;
-    border-collapse: collapse;
-}
+    max-width: 800px;
+    background-color: #c8c8fa;
+
+    .btn-outline-primary {
+        color: #4f46e5;
+        border: 2px solid #4f46e5;
+
+        &:hover {
+            color: #ffffff;
+            background-color: #4f46e5;
+        }
+    }
+
+    .btn-outline-success {
+        color: #10b981;
+        border: 2px solid #10b981;
+
+        &:hover {
+            color: #ffffff;
+            background-color: #10b981;
+        }
+    }
+
+    .btn-outline-danger {
+        color: #ef4444;
+        border: 2px solid #ef4444;
+
+        &:hover {
+            color: #ffffff;
+            background-color: #ef4444;
+        }
+    }
+/* override bootstrap cell backgrounds */
+    th,
+     td {
+        background-color: #f8fafc !important;
+    }
 }
 
 .error {

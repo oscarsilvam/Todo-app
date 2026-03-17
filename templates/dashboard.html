@@ -13,12 +13,12 @@
     {% else %}
 
     <div class="table-responsive-sm fs-6">
-        <table class="table">
+        <table id="table-content" class="table table-hover">
             <thead>
                 <tr>
                     <th>Titre</th>
                     <th>Date</th>
-                    <th>Options</th>
+                    <th class="text-end">Options</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,17 +26,48 @@
                 <tr>
                     <td>{{ todo.title }}</td>
                     <td>{{ todo.due_date or '' }}</td>
+                    <!--
                     <td>
-                        <a class="btn btn-outline-success d-flex justify-content-center"
+                        <a class="btn btn-outline-primary d-flex justify-content-center"
                             href="{{ url_for('todo_details', id=todo.id) }}">Détails</a>
                         <div class="d-flex justify-content-center">
+                            
+                            <a href="{{ url_for('update', id=todo.id) }}" class="btn btn-outline-success">Modifier</a>
                             <form action="{{ url_for('delete', id=todo.id) }}" method="post">
                                 <button class="btn btn-outline-danger" type="submit">Effacer</button>
                             </form>
-                            <!-- use a GET link to open the edit form -->
-                            <a href="{{ url_for('update', id=todo.id) }}" class="btn btn-outline-primary">Modifier</a>
                         </div>
 
+                    </td>
+                    -->
+                    <td class="text-end">
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('todo_details', id=todo.id) }}">
+                                        Détails
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('update', id=todo.id) }}">
+                                        Modifier
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <form action="{{ url_for('delete', id=todo.id) }}" method="post">
+                                        <button class="dropdown-item text-danger" type="submit">
+                                            Supprimer
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}
@@ -47,7 +78,7 @@
     <div class="d-flex justify-content-center">
 
         <a class="btn btn-outline-primary me-3" href="{{ url_for('add_new_todo') }}">Ajouter une nouvelle tâche</a>
-        <a class="btn btn-outline-success me-3" href="{{ url_for('logout') }}">Se déconnecter</a>
+        <a class="btn btn-outline-danger me-3" href="{{ url_for('logout') }}">Se déconnecter</a>
     </div>
 </div>
 
