@@ -45,7 +45,57 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
+/* Shared modern card layout */
+.app-card {
+  max-width: 800px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.9rem 2rem rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.app-card__header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  padding: 1.25rem 1.5rem;
+}
+
+.app-card__body {
+  background: #ffffff;
+  padding: 1.5rem;
+}
+
 .error {
   color: red;
   font-size: 0.9em;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/* Modern button styles */
+.btn-modern {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: #ffffff;
+  box-shadow: 0 0.6rem 1.5rem rgba(102, 126, 234, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-modern:hover,
+.btn-modern:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 0.8rem 2rem rgba(102, 126, 234, 0.45);
+}
+
+.btn-modern-outline {
+  border: 2px solid rgba(102, 126, 234, 0.8);
+  color: rgba(102, 126, 234, 0.9);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+.btn-modern-outline:hover,
+.btn-modern-outline:focus {
+  background: rgba(102, 126, 234, 0.14);
+}
+
+/*# sourceMappingURL=style.css.map */

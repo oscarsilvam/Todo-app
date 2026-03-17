@@ -2,11 +2,17 @@
 {% block title %}TOO app{% endblock %}
 
 {% block content %}
-<div class="content p-4 mx-auto">
-    <h1 class="mb-4 text-center">Ma To-do</h1>
-    <div class="d-flex justify-content-center">
-        <a class="btn btn-outline-primary me-3" href="{{url_for('login')}}">Se connecter</a>
-        <a class="btn btn-outline-success ms-3" href="{{url_for('register')}}">S'enregistrer</a>
+<div class="card app-card">
+    <div class="card-header app-card__header text-center">
+        <h1 class="h3 mb-1">Ma To-do</h1>
+        <p class="mb-0 text-white-75">Connectez-vous ou créez un compte pour commencer.</p>
+    </div>
+
+    <div class="card-body app-card__body text-center">
+        <div class="d-flex justify-content-center gap-2 flex-wrap">
+            <a class="btn btn-outline-primary px-4" href="{{ url_for('login') }}">Se connecter</a>
+            <a class="btn btn-outline-success px-4" href="{{ url_for('register') }}">S'enregistrer</a>
+        </div>
     </div>
 </div>
 {% endblock %}
