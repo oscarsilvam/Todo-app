@@ -2,59 +2,59 @@
 {% block title %}Détails de la tâche{% endblock %}
 
 {% block content %}
-<div class="card mx-auto shadow-lg rounded-4 border-0" id="card_todo">
-    <div class="card-header bg-transparent border-0 text-white">
-        <h4 class="card-title mb-0 d-flex align-items-center">
-            <i class="bi bi-card-checklist me-3 fs-3"></i>
-            {{ todo.title }}
-        </h4>
+
+<div class="card-header app-card__header">
+    <h4 class="card-title mb-0 d-flex align-items-center">
+        <i class="bi bi-card-checklist me-3 fs-3"></i>
+        {{ todo.title }}
+    </h4>
+</div>
+<div class="card-body bg-white rounded-bottom-4 p-4">
+    <div class="mb-4">
+        <h6 class="text-muted mb-2 d-flex align-items-center">
+            <i class="bi bi-text-paragraph me-2"></i>Description
+        </h6>
+        <p class="card-text fs-5 lh-base">{{ todo.description }}</p>
     </div>
-    <div class="card-body bg-white rounded-bottom-4 p-4">
-        <div class="mb-4">
-            <h6 class="text-muted mb-2 d-flex align-items-center">
-                <i class="bi bi-text-paragraph me-2"></i>Description
-            </h6>
-            <p class="card-text fs-5 lh-base">{{ todo.description }}</p>
-        </div>
 
-        <div class="row g-3 mb-4">
-            <div class="col-md-6">
-                <div class="p-3 bg-light rounded-3">
-                    <h6 class="text-muted mb-1 d-flex align-items-center">
-                        <i class="bi bi-calendar-event me-2"></i>Date
-                    </h6>
-                    <p class="mb-0 fw-semibold text-primary">{{ todo.due_date }}</p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="p-3 bg-light rounded-3">
-                    <h6 class="text-muted mb-1 d-flex align-items-center">
-                        <i class="bi bi-clock me-2"></i>Heure
-                    </h6>
-                    <p class="mb-0 fw-semibold text-primary">{{ todo.due_time }}</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="mb-4">
+    <div class="row g-3 mb-4">
+        <div class="col-md-6">
             <div class="p-3 bg-light rounded-3">
                 <h6 class="text-muted mb-1 d-flex align-items-center">
-                    <i class="bi bi-flag me-2"></i>Status
+                    <i class="bi bi-calendar-event me-2"></i>Date
                 </h6>
-                <span class="badge fs-6 px-3 py-2
+                <p class="mb-0 fw-semibold text-primary">{{ todo.due_date }}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-3 bg-light rounded-3">
+                <h6 class="text-muted mb-1 d-flex align-items-center">
+                    <i class="bi bi-clock me-2"></i>Heure
+                </h6>
+                <p class="mb-0 fw-semibold text-primary">{{ todo.due_time }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <div class="p-3 bg-light rounded-3">
+            <h6 class="text-muted mb-1 d-flex align-items-center">
+                <i class="bi bi-flag me-2"></i>Status
+            </h6>
+            <span class="badge fs-6 px-3 py-2
                     {% if todo.status == 'Terminée' %}bg-success
                     {% elif todo.status == 'En cours' %}bg-warning text-dark
                     {% else %}bg-secondary{% endif %}">
-                    {{ todo.status }}
-                </span>
-            </div>
-        </div>
-
-        <div class="d-grid">
-            <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg rounded-pill shadow-sm">
-                <i class="bi bi-arrow-left me-2"></i>Retour au tableau de bord
-            </a>
+                {{ todo.status }}
+            </span>
         </div>
     </div>
+
+    <div class="d-grid">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg rounded-pill shadow-sm">
+            <i class="bi bi-arrow-left me-2"></i>Retour au tableau de bord
+        </a>
+    </div>
 </div>
-{% endblock %}          
+</div>
+{% endblock %}

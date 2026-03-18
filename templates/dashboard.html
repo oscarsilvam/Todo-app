@@ -2,108 +2,108 @@
 {% block title %}Tableau de bord{% endblock %}
 
 {% block content %}
-<div class="card app-card">
-    <div class="card-header app-card__header">
-        <div class="d-flex align-items-center justify-content-between flex-wrap">
 
-            <div>
-                <h2 class="h4 mb-0">Tableau de bord</h2>
-                <p class="mb-0 text-white-75">Bienvenue {{ username }}!</p>
-            </div>
+<div class="card-header app-card__header">
+    <div class="d-flex align-items-center justify-content-between flex-wrap">
 
-            <!-- Boutons visibles sur tablette et desktop -->
-            <div class="d-none d-sm-flex gap-2 flex-wrap">
-                <a class="btn btn-light btn-sm shadow-sm" href="{{ url_for('add_new_todo') }}">
-                    <i class="bi bi-plus-lg me-1"></i>Nouvelle tâche
-                </a>
-
-                <a class="btn btn-light btn-sm shadow-sm" href="{{ url_for('logout') }}">
-                    <i class="bi bi-box-arrow-right me-1"></i>Se déconnecter
-                </a>
-            </div>
-
-            <!-- Dropdown visible seulement sur téléphone -->
-            <div class="dropdown d-sm-none">
-                <button class="btn btn-light btn-sm shadow-sm" type="button" data-bs-toggle="dropdown">
-                    <i class="bi bi-three-dots-vertical"></i>
-                </button>
-
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a class="dropdown-item" href="{{ url_for('add_new_todo') }}">
-                            <i class="bi bi-plus-lg me-2"></i>Nouvelle tâche
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item" href="{{ url_for('logout') }}">
-                            <i class="bi bi-box-arrow-right me-2"></i>Se déconnecter
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="card-body app-card__body">
-        {% include "partials/_error_form.html" %}
-
-        {% if list_todo | length == 0 %}
-        <p class="text-center mb-0">Il n'y a aucune tâche à réaliser</p>
-        {% else %}
-
-        <div class="table-responsive-sm fs-6">
-            <table id="table-content" class="table table-hover align-middle">
-                <thead>
-                    <tr>
-                        <th>Titre</th>
-                        <th>Date</th>
-                        <th class="text-end">Options</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for todo in list_todo %}
-                    <tr>
-                        <td>{{ todo.title }}</td>
-                        <td>{{ todo.due_date or '' }}</td>
-                        <td class="text-end">
-                            <div class="dropdown">
-                                <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown">
-                                    <i class="bi bi-three-dots-vertical"></i>
-                                </button>
-
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li>
-                                        <a class="dropdown-item" href="{{ url_for('todo_details', id=todo.id) }}">
-                                            Détails
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a class="dropdown-item" href="{{ url_for('update', id=todo.id) }}">
-                                            Modifier
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <form action="{{ url_for('delete', id=todo.id) }}" method="post">
-                                            <button class="dropdown-item text-danger" type="submit">
-                                                Supprimer
-                                            </button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div>
+            <h2 class="h4 mb-0">Tableau de bord</h2>
+            <p class="mb-0 text-white-75">Bienvenue {{ username }}!</p>
         </div>
 
-        {% endif %}
+        <!-- Boutons visibles sur tablette et desktop -->
+        <div class="d-none d-sm-flex gap-2 flex-wrap">
+            <a class="btn btn-light btn-sm shadow-sm" href="{{ url_for('add_new_todo') }}">
+                <i class="bi bi-plus-lg me-1"></i>Nouvelle tâche
+            </a>
+
+            <a class="btn btn-light btn-sm shadow-sm" href="{{ url_for('logout') }}">
+                <i class="bi bi-box-arrow-right me-1"></i>Se déconnecter
+            </a>
+        </div>
+
+        <!-- Dropdown visible seulement sur téléphone -->
+        <div class="dropdown d-sm-none">
+            <button class="btn btn-light btn-sm shadow-sm" type="button" data-bs-toggle="dropdown">
+                <i class="bi bi-three-dots-vertical"></i>
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                    <a class="dropdown-item" href="{{ url_for('add_new_todo') }}">
+                        <i class="bi bi-plus-lg me-2"></i>Nouvelle tâche
+                    </a>
+                </li>
+
+                <li>
+                    <a class="dropdown-item" href="{{ url_for('logout') }}">
+                        <i class="bi bi-box-arrow-right me-2"></i>Se déconnecter
+                    </a>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </div>
+
+<div class="card-body app-card__body">
+    {% include "partials/_error_form.html" %}
+
+    {% if list_todo | length == 0 %}
+    <p class="text-center mb-0">Il n'y a aucune tâche à réaliser</p>
+    {% else %}
+
+    <div class="table-responsive-sm fs-6">
+        <table id="table-content" class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Date</th>
+                    <th class="text-end">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in list_todo %}
+                <tr>
+                    <td>{{ todo.title }}</td>
+                    <td>{{ todo.due_date or '' }}</td>
+                    <td class="text-end">
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-light" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('todo_details', id=todo.id) }}">
+                                        Détails
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('update', id=todo.id) }}">
+                                        Modifier
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <form action="{{ url_for('delete', id=todo.id) }}" method="post">
+                                        <button class="dropdown-item text-danger" type="submit">
+                                            Supprimer
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% endif %}
+</div>
+
 
 {% endblock %}

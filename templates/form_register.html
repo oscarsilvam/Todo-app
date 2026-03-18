@@ -2,54 +2,53 @@
 {% block title %}register{% endblock %}
 
 {% block content %}
-<div class="card app-card">
-    <div class="card-header app-card__header text-center">
-        <h1 class="h4 mb-1">S'enregistrer</h1>
-        <p class="mb-0 text-white-75">Créez un compte pour commencer à gérer vos tâches.</p>
-    </div>
-
-    <div class="card-body app-card__body">
-        {% include "partials/_error_form.html" %}
-
-        <form id="formulaire_register" action="{{ url_for('new_user') }}" method="POST">
-            <div class="row g-3 mb-3">
-                <div class="col-md-6">
-                    <label for="first_name" class="form-label">Prénom</label>
-                    <input type="text" id="first_name" class="form-control" name="first_name">
-                    <span class="error" id="err_first_name"></span>
-                </div>
-
-                <div class="col-md-6">
-                    <label for="last_name" class="form-label">Nom famille</label>
-                    <input type="text" id="last_name" class="form-control" name="last_name">
-                    <span class="error" id="err_last_name"></span>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <label for="email" class="form-label">Courriel</label>
-                <input type="email" id="email" class="form-control" name="email">
-                <span class="error" id="err_email"></span>
-            </div>
-
-            <div class="mb-3">
-                <label for="username" class="form-label">Nom utilisateur</label>
-                <input type="text" id="username" class="form-control" name="username">
-                <span class="error" id="err_username"></span>
-            </div>
-
-            <div class="mb-3">
-                <label for="password" class="form-label">Mot de passe</label>
-                <input type="password" id="password" class="form-control" name="password">
-                <span class="error" id="err_password"></span>
-            </div>
-
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg">S'enregistrer</button>
-            </div>
-        </form>
-    </div>
+<div class="card-header app-card__header text-center">
+    <h1 class="h4 mb-1">S'enregistrer</h1>
+    <p class="mb-0 text-white-75">Créez un compte pour commencer à gérer vos tâches.</p>
 </div>
+
+<div class="card-body app-card__body">
+    {% include "partials/_error_form.html" %}
+
+    <form id="formulaire_register" action="{{ url_for('new_user') }}" method="POST">
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label for="first_name" class="form-label">Prénom</label>
+                <input type="text" id="first_name" class="form-control" name="first_name">
+                <span class="error" id="err_first_name"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label for="last_name" class="form-label">Nom famille</label>
+                <input type="text" id="last_name" class="form-control" name="last_name">
+                <span class="error" id="err_last_name"></span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Courriel</label>
+            <input type="email" id="email" class="form-control" name="email">
+            <span class="error" id="err_email"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Nom utilisateur</label>
+            <input type="text" id="username" class="form-control" name="username">
+            <span class="error" id="err_username"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Mot de passe</label>
+            <input type="password" id="password" class="form-control" name="password">
+            <span class="error" id="err_password"></span>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">S'enregistrer</button>
+        </div>
+    </form>
+</div>
+
 
 <script src="{{ url_for('static', filename='js/script_register.js') }}"></script>
 {% endblock %}

@@ -2,30 +2,29 @@
 {% block title %}Connexion{% endblock %}
 
 {% block content %}
-<div class="card app-card">
-    <div class="card-header app-card__header text-center">
-        <h1 class="h4 mb-1">Se connecter</h1>
-        <p class="mb-0 text-white-75">Entrez vos identifiants pour accéder à votre tableau de bord.</p>
-    </div>
-
-    <div class="card-body app-card__body">
-        {% include "partials/_error_form.html" %}
-
-        <form action="{{ url_for('connection') }}" method="POST">
-            <div class="mb-3">
-                <label for="username" class="form-label">Nom utilisateur</label>
-                <input type="text" id="username" class="form-control" name="username">
-            </div>
-
-            <div class="mb-3">
-                <label for="password" class="form-label">Mot de passe</label>
-                <input type="password" id="password" class="form-control" name="password">
-            </div>
-
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg">Connexion</button>
-            </div>
-        </form>
-    </div>
+<div class="card-header app-card__header text-center">
+    <h1 class="h4 mb-1">Se connecter</h1>
+    <p class="mb-0 text-white-75">Entrez vos identifiants pour accéder à votre tableau de bord.</p>
 </div>
+
+<div class="card-body app-card__body">
+    {% include "partials/_error_form.html" %}
+
+    <form action="{{ url_for('connection') }}" method="POST">
+        <div class="mb-3">
+            <label for="username" class="form-label">Nom utilisateur</label>
+            <input type="text" id="username" class="form-control" name="username">
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Mot de passe</label>
+            <input type="password" id="password" class="form-control" name="password">
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">Connexion</button>
+        </div>
+    </form>
+</div>
+
 {% endblock %}

@@ -2,57 +2,56 @@
 {% block title %}Nouvelle tâche{% endblock %}
 
 {% block content %}
-<div class="card app-card">
-    <div class="card-header app-card__header text-center">
-        <h1 class="h4 mb-1">Ajouter une nouvelle tâche</h1>
-        <p class="mb-0 text-white-75">Organisez vos idées avec une nouvelle tâche.</p>
-    </div>
+<div class="card-header app-card__header text-center">
+    <h1 class="h4 mb-1">Ajouter une nouvelle tâche</h1>
+    <p class="mb-0 text-white-75">Organisez vos idées avec une nouvelle tâche.</p>
+</div>
 
-    <div class="card-body app-card__body">
-        {% include "partials/_error_form.html" %}
+<div class="card-body app-card__body">
+    {% include "partials/_error_form.html" %}
 
-        <form id="form_todo" action="{{ url_for('todo_new') }}" method="POST">
-            <div class="mb-3">
-                <label for="title" class="form-label">Titre de la tâche</label>
-                <input type="text" id="title" class="form-control" name="title">
-                <span class="error" id="err_title"></span>
-            </div>
-
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea id="description" name="description" class="form-control" rows="3"></textarea>
-            </div>
-
-            <div class="row g-3 mb-3">
-                <div class="col-md-6">
-                    <label for="date" class="form-label">Date prévue</label>
-                    <input type="date" id="date" class="form-control" name="date">
-                </div>
-
-                <div class="col-md-6">
-                    <label for="time" class="form-label">Heure</label>
-                    <input type="time" id="time" class="form-control" name="time">
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <label for="status" class="form-label">Status de la tâche</label>
-                <select id="status" name="status" class="form-select" aria-label="Default select example">
-                    <option value="PENDING" selected>En attente</option>
-                    <option value="DONE">Terminé</option>
-                </select>
-            </div>
-
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg">Ajouter à la liste de tâches</button>
-            </div>
-        </form>
-
-        <div class="mt-4 text-center">
-            {% include "partials/_annuler_logout.html" %}
+    <form id="form_todo" action="{{ url_for('todo_new') }}" method="POST">
+        <div class="mb-3">
+            <label for="title" class="form-label">Titre de la tâche</label>
+            <input type="text" id="title" class="form-control" name="title">
+            <span class="error" id="err_title"></span>
         </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label for="date" class="form-label">Date prévue</label>
+                <input type="date" id="date" class="form-control" name="date">
+            </div>
+
+            <div class="col-md-6">
+                <label for="time" class="form-label">Heure</label>
+                <input type="time" id="time" class="form-control" name="time">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="status" class="form-label">Status de la tâche</label>
+            <select id="status" name="status" class="form-select" aria-label="Default select example">
+                <option value="PENDING" selected>En attente</option>
+                <option value="DONE">Terminé</option>
+            </select>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">Ajouter à la liste de tâches</button>
+        </div>
+    </form>
+
+    <div class="mt-4 text-center">
+        {% include "partials/_annuler_logout.html" %}
     </div>
 </div>
+
 
 <script src="{{ url_for('static', filename='js/script_add_modif_todo.js') }}"></script>
 {% endblock %}
