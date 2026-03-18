@@ -54,7 +54,7 @@ body {
 
 /* Modern button styles */
 .btn-modern {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); /* Modern blue gradient */
+  background: linear-gradient(135deg, #f63ba5 0%, #1d4ed8 100%); /* Modern blue gradient */
   border: none;
   color: #ffffff;
   box-shadow: 0 0.6rem 1.5rem rgba(59, 130, 246, 0.35);
