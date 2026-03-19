@@ -23,7 +23,7 @@
                 <h6 class="text-muted mb-1 d-flex align-items-center">
                     <i class="bi bi-calendar-event me-2"></i>Date
                 </h6>
-                <p class="mb-0 fw-semibold text-primary">{{ todo.due_date }}</p>
+                <p class="mb-0 fw-semibold text-primary">{{ todo.due_date or 'YYYY-MM-DD' }}</p>
             </div>
         </div>
         <div class="col-md-6">
@@ -31,7 +31,7 @@
                 <h6 class="text-muted mb-1 d-flex align-items-center">
                     <i class="bi bi-clock me-2"></i>Heure
                 </h6>
-                <p class="mb-0 fw-semibold text-primary">{{ todo.due_time }}</p>
+                <p class="mb-0 fw-semibold text-primary">{{ due_time or '--:--' }}</p>
             </div>
         </div>
     </div>
@@ -39,13 +39,13 @@
     <div class="mb-4">
         <div class="p-3 bg-light rounded-3">
             <h6 class="text-muted mb-1 d-flex align-items-center">
-                <i class="bi bi-flag me-2"></i>Status
+                <i class="bi bi-flag me-2"></i>Statut
             </h6>
             <span class="badge fs-6 px-3 py-2
                     {% if todo.status == 'Terminée' %}bg-success
                     {% elif todo.status == 'En cours' %}bg-warning text-dark
                     {% else %}bg-secondary{% endif %}">
-                {{ todo.status }}
+                    {{ 'En attente' if todo.status == 'PENDING' else 'Terminé' }}
             </span>
         </div>
     </div>

@@ -179,7 +179,19 @@ def todo_details(id:int):
     if todo.id_user != session["user_id"]:
         abort(403)
 
-    return render_template('todo_details.html', todo=todo)    
+    #Create variables for due_time and due_date to display in the template
+    if todo.due_time:
+        due_time = todo.due_time.strftime('%H:%M').strip()
+    else:
+        due_time = None 
+
+    if todo.due_date:
+        due_date = todo.due_date.strftime('%Y-%m-%d').strip()
+    else:
+        due_date = None
+
+    return render_template('todo_details.html', todo=todo, due_time=due_time, 
+                           due_date=due_date)    
 
 
 #Delete a Todo
